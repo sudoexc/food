@@ -1,5 +1,7 @@
 'use strict';
 
+// Tabs
+    
 window.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.tabheader__item'),
         tabsContent = document.querySelectorAll('.tabcontent'),
@@ -33,5 +35,11 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-    });
+    }); 
+
+    // Timer
+
+    const deadLine = '2021-05-11';
+
+    function getTimeReam
 });
