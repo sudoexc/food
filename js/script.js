@@ -130,7 +130,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const modalTimerId = setTimeout(openModal, 500000);
+    const modalTimerId = setTimeout(openModal, 300000);
     // Изменил значение, чтобы не отвлекало
 
     function showModalByScroll() {
@@ -235,7 +235,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 margin: 0 auto;
             `;
             form.insertAdjacentElement('afterend', statusMessage);
-            
+        
             const formData = new FormData(form);
 
             const object = {};
@@ -246,20 +246,18 @@ window.addEventListener('DOMContentLoaded', function() {
             fetch('server.php', {
                 method: 'POST',
                 headers: {
-                    'Content-type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(object)
-            })
-                .then(data => data.text())
-                .then(data => {
-                    console.log(data);
-                    showThanksModal(message.success);
-                    statusMessage.remove();
-                }).catch(() => {
-                    showThanksModal(message.failure);
-                }).finally(() => {
-                    form.reset();
-                });
+            }).then(data => {
+                console.log(data);
+                showThanksModal(message.success);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
+            });
         });
     }
 
@@ -272,12 +270,11 @@ window.addEventListener('DOMContentLoaded', function() {
         const thanksModal = document.createElement('div');
         thanksModal.classList.add('modal__dialog');
         thanksModal.innerHTML = `
-        <div class="modal__content">
-            <div class="modal__close" data-close>×</div>
-            <div class="modal__title">${message}</div>
-        </div>
+            <div class="modal__content">
+                <div class="modal__close" data-close>×</div>
+                <div class="modal__title">${message}</div>
+            </div>
         `;
-
         document.querySelector('.modal').append(thanksModal);
         setTimeout(() => {
             thanksModal.remove();
@@ -286,4 +283,9 @@ window.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }, 4000);
     }
+
+    fetch('http://localhost:3000/menu')
+        .then(data => data.json())
+        .then(data => console.log(data));
+
 });
