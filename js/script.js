@@ -361,7 +361,7 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteNotDigits(str) {
-        return +width.replace(/\D/g, '');
+        return +str.replace(/\D/g, '');
     }
 
     next.addEventListener('click', () => {
